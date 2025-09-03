@@ -1,73 +1,113 @@
-Admin Dashboard - Quick Install
-Prerequisites
-PHP 8.2+
+# Admin Dashboard
 
-Composer
+A Laravel-based admin dashboard with Vue.js frontend components for product management and authentication.
 
-Node.js and npm
+## Requirements
 
-MySQL 5.7+ or equivalent database
+- PHP 8.1 or higher
+- Composer
+- Node.js & NPM
+- MySQL/PostgreSQL database
 
-Installation Steps
-Clone the Repository
+## Installation
 
-bash
+1. Clone the repository:
+```bash
 git clone https://github.com/jpcunanan716/admindash.git
 cd admindash
-Install PHP Dependencies
+```
 
-bash
+2. Install PHP dependencies:
+```bash
 composer install
-Install JavaScript Dependencies
+```
 
-bash
+3. Install Node.js dependencies:
+```bash
 npm install
-Environment Setup
+```
 
-bash
+4. Create environment file:
+```bash
 cp .env.example .env
-Edit .env with your database credentials:
+```
 
-env
+5. Configure database in `.env`:
+```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=admindash
-DB_USERNAME=root
+DB_USERNAME=your_username
 DB_PASSWORD=your_password
-Generate Application Key
+```
 
-bash
+6. Generate application key:
+```bash
 php artisan key:generate
-Database Setup
+```
 
-bash
-php artisan migrate
-Seed Default Data (creates admin user and sample products)
+7. Run migrations and seeders:
+```bash
+php artisan migrate --seed
+```
 
-bash
-php artisan db:seed
-Build Frontend Assets
+8. Create storage link:
+```bash
+php artisan storage:link
+```
 
-bash
+9. Build assets:
+```bash
 npm run build
-Start Development Server
+```
 
-bash
+## Running the Application
+
+Start the development server:
+```bash
 php artisan serve
-Access Application
-Visit http://localhost:8000 in your browser
+```
 
-Default Login Credentials
-Username: admin or admin@example.com
+For development with asset watching:
+```bash
+npm run dev
+```
 
-Password: password
+Access the application at: `http://127.0.0.1:8000`
 
-Getting Started
-Log in with the default credentials
+## Default Login
 
-Access the dashboard from the sidebar
+- Username: `admin` or `admin@example.com`
+- Password: `password`
 
-Manage products via the "Products" link
+## Features
 
-View videos via the "Videos" link
+- **Authentication**: Laravel-based login with username/email and remember me
+- **Product Management**: Full CRUD operations with Vue.js components
+- **Dashboard**: AdminLTE-styled interface with sidebar navigation
+- **Search & Filter**: Product listing with search and category filtering
+- **File Upload**: Multiple image upload for products
+- **Video Player**: Vue component for video playback (bonus feature)
+
+## Key Routes
+
+- `/login` - Authentication
+- `/dashboard` - Admin dashboard (Admin role only)
+- `/home` - User dashboard (User role)
+- `/products` - Product listing and management (Admin role only)
+- `/videos` - Video player page
+
+## Development
+
+Run tests:
+```bash
+php artisan test
+```
+
+Clear cache:
+```bash
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+```
